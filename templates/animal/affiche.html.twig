@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste{% endblock %}
+{% block montitre %} voici les infos de ton animal {% endblock %}
+{% block body %}
+<div class="row align-items-center">
+    <div class="col-2 text-center">
+        <img src="{{asset('image/' ~ anima.image)}}" alt="" class="img-fluid">
+        </div>
+    <div class="col-center">
+   <h5> {{ anima.nom }}</h5> 
+    <h5>{{anima.description}}</h5>
+    
+    <h5>poids:{{anima.poids}}</h5>
+    {% if anima.dangereux %}
+    dangereux:<span class="badge badge-danger">OUI</span> 
+       {% else %}
+       dangereux:<span class="badge badge-success">NON</span>
+    {% endif %}
+    <div> <a href="{{path('famille_affiche', {'id': anima.familles.id})}}" class="btn btn-primary"> {{anima.familles.libele}}</a></div>
+   <div>
+    {% for continent in anima.continents %}
+    <a href="{{path('affiche_continent', {'id': continent.id})}}" class="btn btn-warning">{{ continent.libele}}</a> 
+   {% endfor %}
+   </div>
+   </div>
+   
+</div>
+
+
+{% endblock %}

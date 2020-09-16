@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+{% block montitre %} voici mes animaux {% endblock %}
+{% block body %}
+{% for animal in animaux %}
+nom : {{animal.nom}}
+{% endfor %}
+{% endblock %}

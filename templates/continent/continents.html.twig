@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Continents {% endblock %}
+{% block montitre %}Voic la liste de mes continents {% endblock %}
+
+{% block body %}
+    {% for cont in continent %}
+        <a href=" {{path('affiche_continent', {'id': cont.id})}}"> <h2 class="border-bottom border-primary">{{cont.libele}}</h2></a>
+         <div class="row">
+            {% for animaux in cont.animaux %}
+            <div class="col-6">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-6 col-lg-2 text-center">
+                        <img src="{{asset('image/' ~ animaux.image)}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="col text-center">
+                        <h5> <a href="{{path('animal_info', {'id': animaux.id})}}">{{ animaux.nom }}</a></h5> 
+                            <h5>{{animaux.description}}</h5>
+                            
+                            <h5>poids:{{animaux.poids}}</h5>
+                            {% if animaux.dangereux %}
+                            dangereux:<span class="badge badge-danger">OUI</span> 
+                            {% else %}
+                            dangereux:<span class="badge badge-success">NON</span>
+                            {% endif %}
+                            <div> <a href="{{path('famille_affiche', {'id': animaux.familles.id})}}" class="btn btn-primary"> {{animaux.familles.libele}}</a></div>
+                    
+                    </div>
+                </div>
+            </div>    
+            {% endfor %}
+           </div>    
+  
+    {% endfor %}
+{% endblock %}

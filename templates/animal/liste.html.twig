@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste{% endblock %}
+{% block montitre %} voici mes animaux {% endblock %}
+{% block body %}
+
+    {% for animal in animaux %}
+    <div class="row align-items-center">
+        <div class="col-2">
+        <img src="{{asset('image/' ~ animal.image)}}" alt="" class="img-fluid">
+        </div>
+    <div class="col">
+   <h2> <a href="{{path('animal_info', {'id': animal.id})}}">{{ animal.nom }}</a></h2> 
+    <h2>{{animal.description}}</h2>
+    <div> <a href="{{path('famille_affiche', {'id': animal.familles.id})}}" class="btn btn-primary"> {{animal.familles.libele}}</a></div>
+   <div> 
+       {% for continent in animal.continents %}
+        <a href="{{path('affiche_continent', {'id': continent.id})}}" class="btn btn-warning">{{ continent.libele}}</a> 
+       {% endfor %}
+   </div>
+   <div>
+       {% for per in animal.disposes %}
+      <a href="" class="btn btn-info">{{per.personne.nom}}</a> 
+       {% endfor %}
+   </div>
+</div>
+</div>
+    {% endfor %}
+
+{% endblock %}

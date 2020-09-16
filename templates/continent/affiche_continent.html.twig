@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste{% endblock %}
+{% block montitre %} voici les infos de mon continent{% endblock %}
+{% block body %}
+{% for cont in cont.animaux %}
+            <div class="row align-items-center">
+                <div class="col-2 text-center">
+                    <img src="{{asset('image/' ~ cont.image)}}" alt="" class="img-fluid">
+                </div>
+                <div class="col-center">
+            <h5> {{ cont.nom }}</h5> 
+                <h5>{{cont.description}}</h5>
+                
+                <h5>poids:{{cont.poids}}</h5>
+                {% if cont.dangereux %}
+                dangereux:<span class="badge badge-danger">OUI</span> 
+                {% else %}
+                dangereux:<span class="badge badge-success">NON</span>
+                {% endif %}
+                <div> <a href="{{path('famille_affiche', {'id': cont.familles.id})}}" class="btn btn-primary"> {{cont.familles.libele}}</a></div>
+            
+            </div>
+            
+            </div>
+{% endfor %}
+
+{% endblock %}
